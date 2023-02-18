@@ -27,6 +27,11 @@ class _DashboardState extends State<Dashboard> {
         elevation: 0,
         backgroundColor: Color.fromARGB(255, 175, 173, 175),
         title: Column(children: [
+          Container(
+                  height:50,
+                  width: 50,
+                  child: Image.asset("assets/logo.png",fit:BoxFit.fill,),
+                  ),
                     Text("ATENEO DE DAVAO UNIVERSITY" ,style: TextStyle(fontSize: 20, color: Colors.black),),
                     Text("Community Center Asset Management System" ,style: TextStyle(fontSize: 20, color: Colors.black),),
 
