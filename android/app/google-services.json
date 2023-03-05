@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "932292445959",
+    "project_id": "exam-cb5c8",
+    "storage_bucket": "exam-cb5c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932292445959:android:8295083a8dc2c7af68e7a2",
+        "android_client_info": {
+          "package_name": "com.example.limflutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932292445959-6p6pt2k0tt03i0qtff9a4qr20grboqkn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4poVoSrFftOBA9cyiqgYC15HuS0LnqzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932292445959-6p6pt2k0tt03i0qtff9a4qr20grboqkn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

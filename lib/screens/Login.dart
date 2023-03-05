@@ -1,7 +1,9 @@
 import 'package:blur/blur.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:limflutter/models/Students.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key, required String title});
@@ -11,6 +13,35 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  // final FirebaseFirestore db = FirebaseFirestore.instance;
+  // List<Students> _students= [];
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   List<Students> allStudents=[];
+  //   db.collection("students").get().then(
+  //     (querySnapshot) {
+  //       print("Successfully completed");
+  //       for (var docSnapshot in querySnapshot.docs) {
+  //         Students students=Students(
+  //           id: docSnapshot.id,
+  //           name: docSnapshot.data()['name'],
+  //           age: docSnapshot.data()['age'],
+  //           pic1: docSnapshot.data()['pic1']
+  //         );
+  //         allStudents.add(students);
+  //         print(docSnapshot.data()['name']);
+  //         // print('${docSnapshot.id} => ${docSnapshot.data()}');
+  //       }
+  //       setState(() {
+  //         _students=allStudents;
+  //       });
+  //     },
+  //     onError: (e) => print("Error completing: $e"),
+  //   );
+  // }
+  
   @override
   Widget build(BuildContext context){
   return Scaffold(
@@ -24,7 +55,7 @@ class _LoginState extends State<Login> {
         children: [
           Container(
             width: 400,
-            height: 600,
+            height: 600 ,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12)
             ),
@@ -77,7 +108,22 @@ class _LoginState extends State<Login> {
                   ),
               ],
             )),
-          ).frosted(blur:1,borderRadius: BorderRadius.circular(12),)
+          ).frosted(blur:1,borderRadius: BorderRadius.circular(12),),
+        //   Column(children: <Widget>[
+        //   Container(
+        //     height: 400,
+        //     child: ListView.builder(
+        //       itemCount: _students.length,
+        //       itemBuilder:(context, index) {
+        //         if(_students.length==0){
+        //         return Text("Nothing");
+        //         } else {
+        //           return Text(_students[index].id);
+        //         }
+        //       },
+        //     ),
+        //   )]
+        // ,)
         ],
       ),
       

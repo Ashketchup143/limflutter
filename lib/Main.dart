@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:glass/glass.dart';
@@ -5,12 +6,17 @@ import 'package:blur/blur.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:limflutter/firebase_options.dart';
 import 'package:limflutter/screens/Dashboard.dart';
 import 'package:limflutter/screens/Login.dart';
 import 'package:limflutter/screens/Profile.dart';
 import 'package:limflutter/screens/Setting.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 
