@@ -50,7 +50,7 @@ class _DashboardState extends State<Dashboard> {
         Scaffold(
           appBar: AppBar(
           elevation: 0,
-          backgroundColor: Color.fromARGB(255, 175, 173, 175),
+          backgroundColor: Color.fromARGB(255, 2, 25, 138),
           centerTitle: true,
           title: 
           Center(
@@ -63,8 +63,8 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       Container(
                         child: Column(children: [
-                          Text("ATENEO DE DAVAO UNIVERSITY" ,style: TextStyle(fontSize: 20, color: Colors.black),),
-                          Text("Community Center Asset Management System" ,style: TextStyle(fontSize: 20, color: Colors.black),),
+                          Text("ATENEO DE DAVAO UNIVERSITY" ,style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 255, 255, 255)),),
+                          Text("Community Center Asset Management System" ,style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 255, 255, 255)),),
                                           
                         ],),
                       ),
@@ -102,6 +102,7 @@ class _DashboardState extends State<Dashboard> {
                     padding: EdgeInsets.all(40),
                     width: 300,
                     child: Card(
+                      elevation: 10,
                       shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.0)),
                       child: Container(
@@ -111,14 +112,20 @@ class _DashboardState extends State<Dashboard> {
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            // Image.network(students.strMealThumb),
+                            SizedBox(height: 10.0),
+                            CircleAvatar(
+                              radius: 50,
+                              backgroundImage: NetworkImage(students.pic),
+                            ),
+                            // Image.network(students.pic),
                             SizedBox(height: 20.0),
-                            Text("description"+students.name),
-                            Text(students.description),
-                            Text(students.id),
-                            // Text(students.age as String),
-                            Text(students.sex),
+                            Text("Name: "+students.name,),
+                            Text("Description: "+students.description,),
+                            Text("ID: "+students.id, ),
+                            Text("Age: "+students.age.toString()),
+                            Text("Sex: "+students.sex,),
                           ],
                         ),
                       ),

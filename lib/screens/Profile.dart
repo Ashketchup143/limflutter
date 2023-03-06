@@ -16,7 +16,7 @@ class _profileState extends State<profile> {
         Scaffold(
           appBar: AppBar(
           elevation: 0,
-          backgroundColor: Color.fromARGB(255, 175, 173, 175),
+          backgroundColor: Color.fromARGB(255, 2, 25, 138),
           centerTitle: true,
           title: 
           Center(

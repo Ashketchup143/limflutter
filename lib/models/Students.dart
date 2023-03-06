@@ -1,7 +1,7 @@
 class Students{
   final String id;
   final String name;
-  final double age;
+  final int age;
   final String description;
   final String sex;
   final String pic;

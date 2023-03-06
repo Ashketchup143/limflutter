@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:limflutter/models/Students.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key, required String title});
@@ -41,93 +42,226 @@ class _LoginState extends State<Login> {
   //     onError: (e) => print("Error completing: $e"),
   //   );
   // }
-  
+   final List<String> imageList = [
+    'assets/addu-ccfc.jpg',
+    'assets/addujacinto.jpg',
+    'assets/addu-library.jpg',
+    'assets/addu-matina.jpg',
+    'assets/addu-students.jpg',
+  ];
+
   @override
   Widget build(BuildContext context){
   return Scaffold(
-   body: Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      color: Color.fromARGB(255, 9, 64, 109),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: 400,
-            height: 600 ,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12)
-            ),
-            child: (Column(
-              children: [
+   body: Stack(
+     children: [
+      Container(
+                height: MediaQuery.of(context).size.height,
+                width:MediaQuery.of(context).size.width,
+                child:Image.asset("assets/addujacinto.jpg",fit:BoxFit.fill)
+              ),
+              Opacity(
+                opacity: 0.5,
+                child: 
                 Container(
-                  height: 50,
+                height: MediaQuery.of(context).size.height,
+                width:MediaQuery.of(context).size.width,  
+                color: Color.fromARGB(255, 1, 30, 133),
                 ),
-                Container(
-                  height:150,
-                  width: 150,
-                  child: Image.asset("assets/logo.png",fit:BoxFit.fill,),
+              ),
+       Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Card(
+                elevation: 10,
+                shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0)),
+                child: Container(
+                  width: 800,
+                  height: 600 ,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12)
                   ),
-                
-                Container(
-                  width: 350,
-                  child: Text("ATENEO DE DAVAO UNIVERSITY",style: TextStyle(fontSize: 45), textAlign: TextAlign.center,)),
-                Text("Community Center A", style: TextStyle(fontSize:20), textAlign: TextAlign.center,),
-                 Text("Asset Management System", style: TextStyle(fontSize:20), textAlign: TextAlign.center,),
-                 Container(height: 80,),
-                Container(
-                  width:175,
-                  height: 30,
-                  child: ElevatedButton(onPressed: (() {
-                    Navigator.pushReplacementNamed(context, "2");
-                    }),
-                    style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 197, 246, 179),side: BorderSide(width:1)),
-                    child: Row(
-                      children: [
-                        Container(width:5),
-                        Text("Login with Google", style: TextStyle(color: Colors.black),),
-                        Icon(Icons.mail_outline, color: Colors.black)
-                      ],
-                    )),
+                  child: 
+                  Row(
+                    children: [Container(
+                      width: 400,
+                      height: 600,
+                      decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.grey[200],
+                      ),
+                      child: Stack(
+                  children: [
+                    CarouselSlider(
+                      items: imageList.map((imageUrl) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(12.0),
+                            bottomLeft: Radius.circular(12.0)
+                          ),
+                            color: Colors.grey[200],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(12.0),
+                            bottomLeft: Radius.circular(12.0)
+                          ),
+                            child: Image.network(
+                              imageUrl,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                      options: CarouselOptions(
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        aspectRatio: 400 / 600,
+                        pageSnapping: true,
+                        viewportFraction: 1,
+                        scrollDirection: Axis.horizontal,
+                        scrollPhysics: PageScrollPhysics(),
+                      ),
+                    ),
+                  ],
                 ),
-                Container(height: 10,),
-                  Container(
-                    width: 175,
-                    height: 30,
-                    child: ElevatedButton(onPressed: (() {
-                    }),
-                    style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 114, 214, 247),side: BorderSide(width:1)),
-                    child: Row(
-                      children: [
-                        Container(width:10),
-                        Text("Login as Guest", style: TextStyle(color: Colors.black),),
-                        Icon(Icons.supervised_user_circle, color: Colors.black,)
-                      ],
-                    )),
+
+            
+        
+                      
+                    ),
+                      (
+                        Column(
+                        children: [
+                          Container(
+                            height: 50,
+                          ),
+                          Container(
+                            height:150,
+                            width: 150,
+                            child: Image.asset("assets/logo.png",fit:BoxFit.fill,),
+                            ),
+                          
+                          Container(
+                            width: 350,
+                            child: Text("ATENEO DE DAVAO UNIVERSITY",style: TextStyle(fontSize: 30), textAlign: TextAlign.center,)),
+                          Text("Community Center A", style: TextStyle(fontSize:20), textAlign: TextAlign.center,),
+                           Text("Asset Management System", style: TextStyle(fontSize:20), textAlign: TextAlign.center,),
+                           Container(height: 40,),
+                           Container(
+                            width:300,
+                            height:40,
+                            child: 
+                            TextField(
+                              maxLines:1,
+                              decoration: InputDecoration(
+                                hintText: "username",
+                                filled: true,
+                                fillColor: Color.fromARGB(255, 243, 242, 242),
+                                border: InputBorder.none,
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(width:1, color: Color.fromARGB(255, 0, 0, 0)),
+                                  borderRadius: BorderRadius.all(Radius.circular(5)
+                                  ),
+                                ),
+                                focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(width:1, color: Color.fromARGB(255, 0, 0, 0)),
+                                  borderRadius: BorderRadius.all(Radius.circular(5)
+                                )
+                                ) 
+                              ),
+                            ),
+                          ),
+                          Container(height: 10,),
+                            Container(
+                            width:300,
+                            height:40,
+                            child: 
+                            TextField(
+                              obscureText: true,
+                              maxLines:1,
+                              decoration: InputDecoration(
+                                hintText: "password",
+                                filled: true,
+                                fillColor: Color.fromARGB(255, 243, 242, 242),
+                                border: InputBorder.none,
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(width:1, color: Color.fromARGB(255, 0, 0, 0)),
+                                  borderRadius: BorderRadius.all(Radius.circular(5)
+                                  ),
+                                ),
+                                focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(width:1, color: Color.fromARGB(255, 0, 0, 0)),
+                                  borderRadius: BorderRadius.all(Radius.circular(5)
+                                )
+                                ) 
+                              ),
+                            ),
+                          ),
+                          Container(height: 10,),
+                          Container(
+                            width:175,
+                            height: 30,
+                            child: ElevatedButton(onPressed: (() {
+                              Navigator.pushReplacementNamed(context, "2");
+                              }),
+                              style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 197, 246, 179),side: BorderSide(width:1)),
+                              child: Row(
+                                children: [
+                                  Container(width:5),
+                                  Text("Login with Google", style: TextStyle(color: Colors.black),),
+                                  Icon(Icons.mail_outline, color: Colors.black)
+                                ],
+                              )),
+                          ),
+                          Container(height: 10,),
+                            Container(
+                              width: 175,
+                              height: 30,
+                              child: ElevatedButton(onPressed: (() {
+                              }),
+                              style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 114, 214, 247),side: BorderSide(width:1)),
+                              child: Row(
+                                children: [
+                                  Container(width:10),
+                                  Text("Login as Guest", style: TextStyle(color: Colors.black),),
+                                  Icon(Icons.supervised_user_circle, color: Colors.black,)
+                                ],
+                              )),
+                            ),
+                        ],
+                      )),
+                    ],
                   ),
-              ],
-            )),
-          ).frosted(blur:1,borderRadius: BorderRadius.circular(12),),
-        //   Column(children: <Widget>[
-        //   Container(
-        //     height: 400,
-        //     child: ListView.builder(
-        //       itemCount: _students.length,
-        //       itemBuilder:(context, index) {
-        //         if(_students.length==0){
-        //         return Text("Nothing");
-        //         } else {
-        //           return Text(_students[index].id);
-        //         }
-        //       },
-        //     ),
-        //   )]
-        // ,)
-        ],
-      ),
-      
-    )
+                ),
+              ),
+            //   Column(children: <Widget>[
+            //   Container(
+            //     height: 400,
+            //     child: ListView.builder(
+            //       itemCount: _students.length,
+            //       itemBuilder:(context, index) {
+            //         if(_students.length==0){
+            //         return Text("Nothing");
+            //         } else {
+            //           return Text(_students[index].id);
+            //         }
+            //       },
+            //     ),
+            //   )]
+            // ,)
+            ],
+          ),
+          
+        ),
+     ],
+   )
   );
     }
 }
