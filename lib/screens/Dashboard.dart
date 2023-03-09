@@ -25,10 +25,10 @@ class _DashboardState extends State<Dashboard> {
           Students students=Students(
             id: docSnapshot.id,
             name: docSnapshot.data()['name'],
-            age: docSnapshot.data()['age'],
-            description: docSnapshot.data()['description'],
-            sex: docSnapshot.data()['sex'],
-            pic:docSnapshot.data()['pic']
+            // age: docSnapshot.data()['age'],
+            // description: docSnapshot.data()['description'],
+            // sex: docSnapshot.data()['sex'],
+            // pic:docSnapshot.data()['pic']
           );
           allStudents.add(students);
           // print(docSnapshot.data()['name']);
@@ -115,17 +115,17 @@ class _DashboardState extends State<Dashboard> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             SizedBox(height: 10.0),
-                            CircleAvatar(
-                              radius: 50,
-                              backgroundImage: NetworkImage(students.pic),
-                            ),
+                            // CircleAvatar(
+                            //   radius: 50,
+                            //   backgroundImage: NetworkImage(students.pic),
+                            // ),
                             // Image.network(students.pic),
                             SizedBox(height: 20.0),
                             Text("Name: "+students.name,),
-                            Text("Description: "+students.description,),
+                            // Text("Description: "+students.description,),
                             Text("ID: "+students.id, ),
-                            Text("Age: "+students.age.toString()),
-                            Text("Sex: "+students.sex,),
+                            // Text("Age: "+students.age.toString()),
+                            // Text("Sex: "+students.sex,),
                           ],
                         ),
                       ),

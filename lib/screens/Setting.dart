@@ -30,8 +30,8 @@ class _settingState extends State<setting> {
                       ),
                       Container(
                         child: Column(children: [
-                          Text("ATENEO DE DAVAO UNIVERSITY" ,style: TextStyle(fontSize: 20, color: Colors.black),),
-                          Text("Community Center Asset Management System" ,style: TextStyle(fontSize: 20, color: Colors.black),),
+                          Text("ATENEO DE DAVAO UNIVERSITY" ,style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 255, 255, 255)),),
+                          Text("Community Center Asset Management System" ,style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 255, 255, 255)),),
                                           
                         ],),
                       ),
@@ -40,9 +40,24 @@ class _settingState extends State<setting> {
           )
                     ),
           drawer: leftdrawer(),
-          body:
-          Text("Settings")
-        );
+          body: Stack(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height,
+                width:MediaQuery.of(context).size.width,
+                child:Image.asset("assets/addujacinto.jpg",fit:BoxFit.fill)
+              ),
+              Opacity(
+                opacity: 0.5,
+                child: 
+                Container(
+                height: MediaQuery.of(context).size.height,
+                width:MediaQuery.of(context).size.width,  
+                color: Color.fromARGB(255, 1, 30, 133),
+                ),
+              ),
+            ],
+             ));
     }
 
 }

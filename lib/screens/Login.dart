@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:limflutter/models/Students.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:limflutter/services/authservice.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key, required String title});
@@ -136,7 +137,7 @@ class _LoginState extends State<Login> {
         
                       
                     ),
-                      (
+                      Expanded(child: Container()),
                         Column(
                         children: [
                           Container(
@@ -208,9 +209,16 @@ class _LoginState extends State<Login> {
                           Container(
                             width:175,
                             height: 30,
-                            child: ElevatedButton(onPressed: (() {
-                              Navigator.pushReplacementNamed(context, "2");
-                              }),
+                            child: ElevatedButton(onPressed: () async {
+                              await AuthService().signInWithGoogle().then((value){
+                                print(value.user?.displayName.toString());
+
+                              }).onError((error, stackTrace){
+
+                              });
+                              // ignore: use_build_context_synchronously
+                              Navigator.pushReplacementNamed(context, "3");
+                              },
                               style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 197, 246, 179),side: BorderSide(width:1)),
                               child: Row(
                                 children: [
@@ -225,6 +233,7 @@ class _LoginState extends State<Login> {
                               width: 175,
                               height: 30,
                               child: ElevatedButton(onPressed: (() {
+                                Navigator.pushReplacementNamed(context, "3");
                               }),
                               style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 114, 214, 247),side: BorderSide(width:1)),
                               child: Row(
@@ -236,7 +245,8 @@ class _LoginState extends State<Login> {
                               )),
                             ),
                         ],
-                      )),
+                      ),
+                      Expanded(child: Container()),
                     ],
                   ),
                 ),
