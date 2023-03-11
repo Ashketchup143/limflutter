@@ -5,7 +5,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:limflutter/models/Students.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:limflutter/screens/Profile.dart';
 import 'package:limflutter/services/authservice.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key, required String title});
@@ -13,6 +15,7 @@ class Login extends StatefulWidget {
   @override
   State<Login> createState() => _LoginState();
 }
+
 
 class _LoginState extends State<Login> {
   // final FirebaseFirestore db = FirebaseFirestore.instance;
@@ -50,6 +53,8 @@ class _LoginState extends State<Login> {
     'assets/addu-matina.jpg',
     'assets/addu-students.jpg',
   ];
+
+  String name= "";
 
   @override
   Widget build(BuildContext context){
@@ -211,13 +216,21 @@ class _LoginState extends State<Login> {
                             height: 30,
                             child: ElevatedButton(onPressed: () async {
                               await AuthService().signInWithGoogle().then((value){
+                                
                                 print(value.user?.displayName.toString());
-
+                                final user=value.user?.displayName;
+                                setState(() {
+                                  this.name= user.toString();
+                                });
+                                if(user==null){
+                                }else{
+                                  Navigator.pushReplacementNamed(context, "4", arguments: this.name,);
+                                }
                               }).onError((error, stackTrace){
 
                               });
                               // ignore: use_build_context_synchronously
-                              Navigator.pushReplacementNamed(context, "3");
+                              
                               },
                               style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 197, 246, 179),side: BorderSide(width:1)),
                               child: Row(

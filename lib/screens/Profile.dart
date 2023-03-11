@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -11,7 +12,9 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
-     Widget build(BuildContext context) {
+     Widget build(BuildContext context,) {
+      final String name=ModalRoute.of(context)!.settings.arguments as String;
+      print(name);
       return 
         Scaffold(
           appBar: AppBar(
@@ -55,6 +58,14 @@ class _profileState extends State<profile> {
                 color: Color.fromARGB(255, 1, 30, 133),
                 ),
               ),
+              Center(
+                child: Column(children: [
+                  Text("Welcome to the Home Screen" ,style: TextStyle(fontSize: 35, color: Color.fromARGB(255, 255, 255, 255)),),
+                  Expanded(child: Container()),
+                  Text( name,style: TextStyle(fontSize: 40, color: Color.fromARGB(255, 255, 255, 255)),),
+                  Expanded(child: Container()),
+                ],)
+              )
             ],
              ));
     }

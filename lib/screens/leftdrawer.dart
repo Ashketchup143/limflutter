@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:limflutter/services/authservice.dart';
 
 class leftdrawer extends StatelessWidget {
   const leftdrawer({super.key});
@@ -67,6 +68,19 @@ class leftdrawer extends StatelessWidget {
                         Text("Profile", style: TextStyle(color: Colors.black),),
                      
                     )),
+
+        // Container(
+        //           width:175,
+        //           height: 30,
+        //           child: ElevatedButton(onPressed: (() async{
+        //             await AuthService().signOut();
+        //             Navigator.pushReplacementNamed(context, "/");
+        //             }),
+        //             style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 255, 255, 255),side: BorderSide(width:1),elevation: 5),
+        //             child: 
+        //                 Text("Sign out", style: TextStyle(color: Colors.black),),
+                     
+        //             )),
 
         ],
       ),
