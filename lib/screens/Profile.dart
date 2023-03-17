@@ -2,7 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:limflutter/screens/leftdrawer.dart';
+import 'package:limflutter/sidebars/BottomCreate.dart';
+import 'package:limflutter/sidebars/BottomUpdDel.dart';
+
+import 'package:limflutter/sidebars/leftdrawer.dart';
+
+
 
 class profile extends StatefulWidget {
   const profile({super.key});
@@ -12,8 +17,17 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
+    
      Widget build(BuildContext context,) {
-      final String name=ModalRoute.of(context)!.settings.arguments as String;
+      final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      final name = args?['name']?.toString();
+      final photourl = args?['photourl']?.toString();
+      String? username="";
+      String? userphoto="";
+      setState(() {
+        username=name;
+        userphoto=photourl;
+      });
       print(name);
       return 
         Scaffold(
@@ -59,15 +73,28 @@ class _profileState extends State<profile> {
                 ),
               ),
               Center(
-                child: Column(children: [
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                  if (userphoto != null)CircleAvatar(
+                    radius: 100,
+                    backgroundImage: Image.network(
+                      userphoto!,
+                      fit: BoxFit.cover,
+                    ).image,
+                    ),
                   Text("Welcome to the Home Screen" ,style: TextStyle(fontSize: 35, color: Color.fromARGB(255, 255, 255, 255)),),
-                  Expanded(child: Container()),
-                  Text( name,style: TextStyle(fontSize: 40, color: Color.fromARGB(255, 255, 255, 255)),),
-                  Expanded(child: Container()),
+                  if (name != null)Text( "user: "+username!,style: TextStyle(fontSize: 32, color: Color.fromARGB(255, 255, 255, 255)),),
+              
                 ],)
               )
             ],
-             ));
+             ),
+              
+    
+             );
+             
     }
 
 }

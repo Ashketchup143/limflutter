@@ -55,6 +55,7 @@ class _LoginState extends State<Login> {
   ];
 
   String name= "";
+  String photourl= "";
 
   @override
   Widget build(BuildContext context){
@@ -216,15 +217,16 @@ class _LoginState extends State<Login> {
                             height: 30,
                             child: ElevatedButton(onPressed: () async {
                               await AuthService().signInWithGoogle().then((value){
-                                
                                 print(value.user?.displayName.toString());
                                 final user=value.user?.displayName;
+                                final photo=value.user?.photoURL;
                                 setState(() {
-                                  this.name= user.toString();
+                                  name= user.toString();
+                                  photourl=photo.toString();
                                 });
                                 if(user==null){
                                 }else{
-                                  Navigator.pushReplacementNamed(context, "4", arguments: this.name,);
+                                  Navigator.pushReplacementNamed(context, "4", arguments: {'name': name, 'photourl': photourl});
                                 }
                               }).onError((error, stackTrace){
 

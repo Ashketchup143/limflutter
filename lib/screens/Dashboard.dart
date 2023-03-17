@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:limflutter/models/Students.dart';
-import 'package:limflutter/screens/leftdrawer.dart';
+import 'package:limflutter/sidebars/BottomCreate.dart';
+import 'package:limflutter/sidebars/BottomUpdDel.dart';
+import 'package:limflutter/sidebars/leftdrawer.dart';
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
@@ -12,6 +14,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
    final FirebaseFirestore db = FirebaseFirestore.instance;
+   String userid="";
   List<Students> _students= [];
   @override
   void initState() {
@@ -25,10 +28,10 @@ class _DashboardState extends State<Dashboard> {
           Students students=Students(
             id: docSnapshot.id,
             name: docSnapshot.data()['name'],
-            // age: docSnapshot.data()['age'],
-            // description: docSnapshot.data()['description'],
-            // sex: docSnapshot.data()['sex'],
-            // pic:docSnapshot.data()['pic']
+            age: docSnapshot.data()['age'],
+            description: docSnapshot.data()['description'],
+            sex: docSnapshot.data()['sex'],
+            pic:docSnapshot.data()['pic']
           );
           allStudents.add(students);
           // print(docSnapshot.data()['name']);
@@ -89,54 +92,76 @@ class _DashboardState extends State<Dashboard> {
                 color: Color.fromARGB(255, 1, 30, 133),
                 ),
               ),
-          _students.length > 0
-          ? SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              alignment: WrapAlignment.center,
-              direction: Axis.horizontal,
+          Center(
+            child: Column(
               children: [
-                for (var students in _students)
-                  Container(
-                    padding: EdgeInsets.all(40),
-                    width: 300,
-                    child: Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0)),
-                      child: Container(
-                        width: 250.0,
-                        height: 300.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.0),
+                _students.length > 0
+                ? SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    alignment: WrapAlignment.center,
+                    direction: Axis.horizontal,
+                    children: [
+                      for (var students in _students)
+                        GestureDetector(
+                          onTap: (){
+                            userid=students.id;
+                            print(userid);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(40),
+                            
+                            width: 300,
+                            child: Card(
+                              elevation: 10,
+                              shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0)),
+                              child: Container(
+                                width: 250.0,
+                                height: 300.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: 10.0),
+                                    CircleAvatar(
+                                      radius: 50,
+                                      backgroundImage: NetworkImage(students.pic),
+                                    ),
+                                    // Image.network(students.pic),
+                                    SizedBox(height: 20.0),
+                                    Text("Name: "+students.name,),
+                                    Text("Description: "+students.description,),
+                                    Text("ID: "+students.id, ),
+                                    Text("Age: "+students.age.toString()),
+                                    Text("Sex: "+students.sex,),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 10.0),
-                            // CircleAvatar(
-                            //   radius: 50,
-                            //   backgroundImage: NetworkImage(students.pic),
-                            // ),
-                            // Image.network(students.pic),
-                            SizedBox(height: 20.0),
-                            Text("Name: "+students.name,),
-                            // Text("Description: "+students.description,),
-                            Text("ID: "+students.id, ),
-                            // Text("Age: "+students.age.toString()),
-                            // Text("Sex: "+students.sex,),
-                          ],
-                        ),
-                      ),
-                    ),
+                    ],
                   ),
+                )
+                : Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  Row(children: [
+                    Expanded(child:Container()),
+                    BottomCreate(),
+                    SizedBox(width: 30,),
+                    BottomUpdateAndDelete(userid: userid),
+                    Expanded(child:Container()),
+                  ],)
+              
+              
               ],
             ),
-          )
-          : Center(
-              child: CircularProgressIndicator(),
-            ),
+          ),
             ],
         
         // Column(children: <Widget>[
