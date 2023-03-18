@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class BottomUpdateAndDelete extends StatefulWidget {
-  final String? userid;
+  final String userid;
 
-  BottomUpdateAndDelete({this.userid="", Key? key}) : super(key: key);
+  BottomUpdateAndDelete({required this.userid, Key? key}) : super(key: key);
 
   @override
   State<BottomUpdateAndDelete> createState() => _BottomUpdateAndDeleteState();
@@ -27,7 +27,16 @@ class _BottomUpdateAndDeleteState extends State<BottomUpdateAndDelete> {
   String displayText4 = "";
   String displayText5 = "";
   
+  String? _userID;
+  
   // String? get userid => null;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _userID=widget.userid;
+    print(_userID);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,11 +76,15 @@ class _BottomUpdateAndDeleteState extends State<BottomUpdateAndDelete> {
                     ),
                     child: Column(
                       children: [
+                        
+                        
                         // Text(widget.userid??""),
                         Text("Create Student User Profile" ,style: TextStyle(fontSize: 35),),
                         SizedBox(height: 30,),
-                        Textsfields(context,"ID",textController),
+                        Text("UserID: "+widget.userid!),
                         SizedBox(height: 10,),
+                        // Textsfields(context,"ID",textController),
+                        // SizedBox(height: 10,),
                         Textsfields(context,"Name",textController1),
                         SizedBox(height: 10,),
                         Textsfields(context,"Age",textController2),
@@ -112,7 +125,7 @@ class _BottomUpdateAndDeleteState extends State<BottomUpdateAndDelete> {
     
                             // add the data to Firestore
                             CollectionReference collection=FirebaseFirestore.instance.collection("students");
-                            DocumentReference document=collection.doc(textController.text);
+                            DocumentReference document=collection.doc(widget.userid!);
                             document.update(updateUserData);
     
                             setState(() {
@@ -150,7 +163,7 @@ class _BottomUpdateAndDeleteState extends State<BottomUpdateAndDelete> {
 
   Container Textsfields(BuildContext context, String hint,TextEditingController control ) {
     return Container(
-                      height:50,
+                      height:40,
                       width: MediaQuery.of(context).size.width*.5,
                       decoration: BoxDecoration(
                         border: Border.all(color:Colors.grey),

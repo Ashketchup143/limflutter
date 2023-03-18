@@ -16,6 +16,8 @@ class _DashboardState extends State<Dashboard> {
    final FirebaseFirestore db = FirebaseFirestore.instance;
    String userid="";
   List<Students> _students= [];
+  
+  late String _userId="";
   @override
   void initState() {
     // TODO: implement initState
@@ -46,7 +48,12 @@ class _DashboardState extends State<Dashboard> {
     );
 
   }
-
+void _setUserId(String id) {
+    setState(() {
+      _userId = id;
+      print(_userId);
+    });
+  }
 @override
     Widget build(BuildContext context) {
       return 
@@ -105,10 +112,11 @@ class _DashboardState extends State<Dashboard> {
                     children: [
                       for (var students in _students)
                         GestureDetector(
-                          onTap: (){
-                            userid=students.id;
-                            print(userid);
-                          },
+                          onTap: () => _setUserId(students.id),
+                          // (){
+                          //   userid=students.id;
+                          //   print(userid);
+                          // },
                           child: Container(
                             padding: EdgeInsets.all(40),
                             
@@ -154,7 +162,7 @@ class _DashboardState extends State<Dashboard> {
                     Expanded(child:Container()),
                     BottomCreate(),
                     SizedBox(width: 30,),
-                    BottomUpdateAndDelete(userid: userid),
+                    BottomUpdateAndDelete(userid: _userId),
                     Expanded(child:Container()),
                   ],)
               
