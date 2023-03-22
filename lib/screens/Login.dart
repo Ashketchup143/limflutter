@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:limflutter/main.dart';
 import 'package:limflutter/models/Students.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:limflutter/screens/Profile.dart';
@@ -15,6 +16,12 @@ class Login extends StatefulWidget {
   @override
   State<Login> createState() => _LoginState();
 }
+
+String username= "";
+String userphotourl= "";
+String userid="";
+String useremail="";
+
 
 
 class _LoginState extends State<Login> {
@@ -54,8 +61,7 @@ class _LoginState extends State<Login> {
     'assets/addu-students.jpg',
   ];
 
-  String name= "";
-  String photourl= "";
+  
 
   @override
   Widget build(BuildContext context){
@@ -88,61 +94,59 @@ class _LoginState extends State<Login> {
                 shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0)),
                 child: Container(
-                  width: 800,
+                  width: 400,
                   height: 600 ,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12)
                   ),
                   child: 
                   Row(
-                    children: [Container(
-                      width: 400,
-                      height: 600,
-                      decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.grey[200],
-                      ),
-                      child: Stack(
-                  children: [
-                    CarouselSlider(
-                      items: imageList.map((imageUrl) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(12.0),
-                            bottomLeft: Radius.circular(12.0)
-                          ),
-                            color: Colors.grey[200],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(12.0),
-                            bottomLeft: Radius.circular(12.0)
-                          ),
-                            child: Image.network(
-                              imageUrl,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                      options: CarouselOptions(
-                        autoPlay: true,
-                        enlargeCenterPage: true,
-                        aspectRatio: 400 / 600,
-                        pageSnapping: true,
-                        viewportFraction: 1,
-                        scrollDirection: Axis.horizontal,
-                        scrollPhysics: PageScrollPhysics(),
-                      ),
-                    ),
-                  ],
-                ),
-
-            
-        
+                    children: [
+                  //     Container(
+                  //     width: 400,
+                  //     height: 600,
+                  //     decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(12),
+                  //     color: Colors.grey[200],
+                  //     ),
+                  //     child: Stack(
+                  // children: [
+                    // CarouselSlider(
+                    //   items: imageList.map((imageUrl) {
+                    //     return Container(
+                    //       decoration: BoxDecoration(
+                    //         borderRadius: BorderRadius.only(
+                    //         topLeft: Radius.circular(12.0),
+                    //         bottomLeft: Radius.circular(12.0)
+                    //       ),
+                    //         color: Colors.grey[200],
+                    //       ),
+                    //       child: ClipRRect(
+                    //         borderRadius: BorderRadius.only(
+                    //         topLeft: Radius.circular(12.0),
+                    //         bottomLeft: Radius.circular(12.0)
+                    //       ),
+                    //         child: Image.network(
+                    //           imageUrl,
+                    //           fit: BoxFit.cover,
+                    //         ),
+                    //       ),
+                    //     );
+                    //   }).toList(),
+                    //   options: CarouselOptions(
+                    //     autoPlay: true,
+                    //     enlargeCenterPage: true,
+                    //     aspectRatio: 400 / 600,
+                    //     pageSnapping: true,
+                    //     viewportFraction: 1,
+                    //     scrollDirection: Axis.horizontal,
+                    //     scrollPhysics: PageScrollPhysics(),
+                    //   ),
+                    // ),
+                  // ],
+                // ),
                       
-                    ),
+                    // ),
                       Expanded(child: Container()),
                         Column(
                         children: [
@@ -220,13 +224,17 @@ class _LoginState extends State<Login> {
                                 print(value.user?.displayName.toString());
                                 final user=value.user?.displayName;
                                 final photo=value.user?.photoURL;
+                                final id=value.user?.uid;
+                                final email=value.user?.email;
                                 setState(() {
-                                  name= user.toString();
-                                  photourl=photo.toString();
+                                  username= user.toString();
+                                  userphotourl=photo.toString();
+                                  userid=id.toString();
+                                  useremail=email.toString();
                                 });
                                 if(user==null){
                                 }else{
-                                  Navigator.pushReplacementNamed(context, "4", arguments: {'name': name, 'photourl': photourl});
+                                  Navigator.pushReplacementNamed(context, "4");
                                 }
                               }).onError((error, stackTrace){
 
@@ -248,7 +256,7 @@ class _LoginState extends State<Login> {
                               width: 175,
                               height: 30,
                               child: ElevatedButton(onPressed: (() {
-                                Navigator.pushReplacementNamed(context, "3");
+                                // Navigator.pushReplacementNamed(context, "4");
                               }),
                               style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 114, 214, 247),side: BorderSide(width:1)),
                               child: Row(

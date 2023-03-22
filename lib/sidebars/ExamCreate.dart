@@ -1,43 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:limflutter/screens/Login.dart';
 
-class BottomUpdateAndDelete extends StatefulWidget {
-  final String userid;
-
-  BottomUpdateAndDelete({required this.userid, Key? key}) : super(key: key);
+class ExamCreate extends StatefulWidget {
+  const ExamCreate({Key? key}) : super(key: key);
 
   @override
-  State<BottomUpdateAndDelete> createState() => _BottomUpdateAndDeleteState();
+  State<ExamCreate> createState() => ExamCreateState();
 }
 
-class _BottomUpdateAndDeleteState extends State<BottomUpdateAndDelete> {
- final CollectionReference CreateUser  = FirebaseFirestore.instance.collection("students");
- 
-  TextEditingController textController = TextEditingController();
+class ExamCreateState extends State<ExamCreate> {
   TextEditingController textController1 = TextEditingController();
   TextEditingController textController2 = TextEditingController();
   TextEditingController textController3 = TextEditingController();
-  TextEditingController textController4 = TextEditingController();
-  TextEditingController textController5 = TextEditingController();
 
-  String displayText = "";
+
   String displayText1 = "";
   String displayText2 = "";
   String displayText3 = "";
-  String displayText4 = "";
-  String displayText5 = "";
-  
-  String? _userID;
-  
-  // String? get userid => null;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _userID=widget.userid;
-    print(_userID);
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -77,70 +57,44 @@ class _BottomUpdateAndDeleteState extends State<BottomUpdateAndDelete> {
                     ),
                     child: Column(
                       children: [
-                        
-                        
-                        // Text(widget.userid??""),
-                        Text("Update Student User Profile" ,style: TextStyle(fontSize: 35),),
+                        Text("Create Exam" ,style: TextStyle(fontSize: 35),),
                         SizedBox(height: 30,),
-                        Text("UserID: "+widget.userid!),
+                        Textsfields(context,"Exam ID",textController1),
                         SizedBox(height: 10,),
-                        // Textsfields(context,"ID",textController),
-                        // SizedBox(height: 10,),
-                        Textsfields(context,"Name",textController1),
+                        Textsfields(context,"Exam Name",textController2),
                         SizedBox(height: 10,),
-                        Textsfields(context,"Age",textController2),
+                        Textsfields(context,"Time To Take",textController3),
                         SizedBox(height: 10,),
-                        Textsfields(context,"Description",textController3),
-                        SizedBox(height: 10,),
-                        Textsfields(context,"Sex",textController4),
-                        SizedBox(height: 10,),
-                        Textsfields(context,"Picture",textController5),
-                        SizedBox(height: 10,),
-                       
                         
                        
                         ElevatedButton(
                           onPressed: () {
                             // create a map containing the data to store
-                            Map<String, dynamic> updateUserData = {};
-                            if (textController1.text != "") {
-                              updateUserData['name'] = textController1.text;
-                            }
-                            if (textController2.text.isNotEmpty) {
-                              int? age = int.tryParse(textController2.text);
-                              if (age != null) {
-                                updateUserData['age'] = age;
+                            Map<String, dynamic> userData = {};
+                            
+                            if (textController1.text.isNotEmpty) {
+                              int? id = int.tryParse(textController1.text);
+                              if (id != null) {
+                                userData['examid'] = id;
                               }
                             }
+                            if (textController2.text != "") {
+                              userData['examname'] = textController2.text;
+                            }
                             if (textController3.text != "") {
-                              updateUserData['description'] = textController3.text;
+                              userData['timetotake'] = textController3.text;
                             }
-                            if (textController4.text != "") {
-                              updateUserData['sex'] = textController4.text;
-                            }
-                            if (textController5.text != "") {
-                              updateUserData['pic'] = textController5.text;
-                            }
-                            print(textController);
-                            print(updateUserData);
     
                             // add the data to Firestore
-                            CollectionReference collection=FirebaseFirestore.instance.collection("students");
-                            print(userid);
-                            DocumentReference document=collection.doc(widget.userid!);
-                            document.update(updateUserData);
+                            FirebaseFirestore.instance.collection("exams").add(userData);
     
                             setState(() {
                               displayText1 = textController1.text;
                               displayText2 = textController2.text;
                               displayText3 = textController3.text;
-                              displayText4 = textController4.text;
-                              displayText5 = textController5.text;
                               textController1.clear();
                               textController2.clear();
                               textController3.clear();
-                              textController4.clear();
-                              textController5.clear();
                             });
                             // print(displayText1);
                             //   print(displayText2);
@@ -148,7 +102,7 @@ class _BottomUpdateAndDeleteState extends State<BottomUpdateAndDelete> {
                             //   print(displayText4);
                             //   print(displayText5);
                           },
-                          child: Text("Save updated profile"),
+                          child: Text("Save created exam"),
                         ),
                       ],
                     ),
@@ -158,14 +112,14 @@ class _BottomUpdateAndDeleteState extends State<BottomUpdateAndDelete> {
             },
           );
         },
-        child: const Text('Update'),
+        child: const Text('Create'),
       ),
     );
   }
 
   Container Textsfields(BuildContext context, String hint,TextEditingController control ) {
     return Container(
-                      height:40,
+                      height:50,
                       width: MediaQuery.of(context).size.width*.5,
                       decoration: BoxDecoration(
                         border: Border.all(color:Colors.grey),

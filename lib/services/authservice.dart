@@ -27,9 +27,7 @@ class AuthService{
   // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
 }
 
-void signOutGoogle() async {
+Future<void>signOut()async{
   await _auth.signOut();
 }
-
-  signOut() {}
 }

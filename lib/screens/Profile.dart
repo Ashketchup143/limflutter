@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:limflutter/screens/Login.dart';
 import 'package:limflutter/sidebars/BottomCreate.dart';
 import 'package:limflutter/sidebars/BottomUpdDel.dart';
 
@@ -19,16 +20,16 @@ class profile extends StatefulWidget {
 class _profileState extends State<profile> {
     
      Widget build(BuildContext context,) {
-      final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-      final name = args?['name']?.toString();
-      final photourl = args?['photourl']?.toString();
-      String? username="";
-      String? userphoto="";
-      setState(() {
-        username=name;
-        userphoto=photourl;
-      });
-      print(name);
+      // final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      // final name = args?['name']?.toString();
+      // final photourl = args?['photourl']?.toString();
+      // String? username="";
+      // String? userphoto="";
+      // setState(() {
+      //   username=name;
+      //   userphoto=photourl;
+      // });
+      // print(name);
       return 
         Scaffold(
           appBar: AppBar(
@@ -77,16 +78,15 @@ class _profileState extends State<profile> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                  if (userphoto != null)CircleAvatar(
+                  if (userphotourl != null)CircleAvatar(
                     radius: 100,
                     backgroundImage: Image.network(
-                      userphoto!,
+                      userphotourl!,
                       fit: BoxFit.cover,
                     ).image,
                     ),
                   Text("Welcome to the Home Screen" ,style: TextStyle(fontSize: 35, color: Color.fromARGB(255, 255, 255, 255)),),
-                  if (name != null)Text( "user: "+username!,style: TextStyle(fontSize: 32, color: Color.fromARGB(255, 255, 255, 255)),),
-              
+                  if (username != null)Text( "user: "+username!,style: TextStyle(fontSize: 32, color: Color.fromARGB(255, 255, 255, 255)),),
                 ],)
               )
             ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:blur/blur.dart';
+import 'package:limflutter/screens/Dashboard.dart';
 import 'package:limflutter/sidebars/leftdrawer.dart';
 
 
@@ -57,6 +58,8 @@ class _settingState extends State<setting> {
                 color: Color.fromARGB(255, 1, 30, 133),
                 ),
               ),
+              Container(height: 500, width: 500,),
+              
             ],
              ));
     }

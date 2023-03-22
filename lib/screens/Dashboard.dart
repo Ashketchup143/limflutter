@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:limflutter/models/Students.dart';
+import 'package:limflutter/screens/Login.dart';
 import 'package:limflutter/sidebars/BottomCreate.dart';
 import 'package:limflutter/sidebars/BottomUpdDel.dart';
 import 'package:limflutter/sidebars/leftdrawer.dart';
@@ -11,13 +12,17 @@ class Dashboard extends StatefulWidget {
   State<Dashboard> createState() => _DashboardState();
 }
 
+String studid="";
+String _userId="";
+String studname="";
+String studphotourl="";
+
 class _DashboardState extends State<Dashboard> {
   @override
    final FirebaseFirestore db = FirebaseFirestore.instance;
-   String userid="";
   List<Students> _students= [];
   
-  late String _userId="";
+  
   @override
   void initState() {
     // TODO: implement initState
@@ -103,56 +108,76 @@ void _setUserId(String id) {
             child: Column(
               children: [
                 _students.length > 0
-                ? SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    alignment: WrapAlignment.center,
-                    direction: Axis.horizontal,
-                    children: [
-                      for (var students in _students)
-                        GestureDetector(
-                          onTap: () => _setUserId(students.id),
-                          // (){
-                          //   userid=students.id;
-                          //   print(userid);
-                          // },
-                          child: Container(
-                            padding: EdgeInsets.all(40),
-                            
-                            width: 300,
-                            child: Card(
-                              elevation: 10,
-                              shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.0)),
-                              child: Container(
-                                width: 250.0,
-                                height: 300.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    SizedBox(height: 10.0),
-                                    CircleAvatar(
-                                      radius: 50,
-                                      backgroundImage: NetworkImage(students.pic),
-                                    ),
-                                    // Image.network(students.pic),
-                                    SizedBox(height: 20.0),
-                                    Text("Name: "+students.name,),
-                                    Text("Description: "+students.description,),
-                                    Text("ID: "+students.id, ),
-                                    Text("Age: "+students.age.toString()),
-                                    Text("Sex: "+students.sex,),
-                                  ],
+                ? Container(
+                  height: MediaQuery.of(context).size.height*.8,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      alignment: WrapAlignment.center,
+                      direction: Axis.horizontal,
+                      children: [
+                        for (var students in _students)
+                          GestureDetector(
+                            onTap: () => _setUserId(students.id),
+                            // onTap: () {
+                            //   setState(() {
+                            //     userId = students.id;
+                            //     print(userId);
+                            //   });
+                            // },
+                            onDoubleTap: (){
+                              setState(() {
+                                studid = students.id;
+                                studname=students.name;
+                                studphotourl=students.pic;
+                                print(studname);
+                                // print(studid);
+                                // print(studphotourl);
+                              });
+                              Navigator.pushReplacementNamed(context, "5");
+                            },
+                            // (){
+                            //   userid=students.id;
+                            //   print(userid);
+                            // },
+                            child: Container(
+                              padding: EdgeInsets.all(40),
+                              
+                              width: 300,
+                              child: Card(
+                                elevation: 10,
+                                shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0)),
+                                child: Container(
+                                  width: 250.0,
+                                  height: 300.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(height: 10.0),
+                                      CircleAvatar(
+                                        radius: 50,
+                                        backgroundImage: NetworkImage(students.pic),
+                                      ),
+                                      // Image.network(students.pic),
+                                      SizedBox(height: 20.0),
+                                      Text("Name: "+students.name,),
+                                      Text("Description: "+students.description,),
+                                      Text("ID: "+students.id, ),
+                                      Text("Age: "+students.age.toString()),
+                                      Text("Sex: "+students.sex,),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
                 )
                 : Center(
@@ -160,9 +185,9 @@ void _setUserId(String id) {
                   ),
                   Row(children: [
                     Expanded(child:Container()),
-                    BottomCreate(),
+                    userid=="EXibvyI7KEZy6OSJAF3UxwCdGru2"||useremail=="pappaasa@addu.edu.ph"?BottomCreate():Container(),
                     SizedBox(width: 30,),
-                    BottomUpdateAndDelete(userid: _userId),
+                    userid=="EXibvyI7KEZy6OSJAF3UxwCdGru2"||useremail=="pappaasa@addu.edu.ph"?BottomUpdateAndDelete(userid: _userId):Container(),
                     Expanded(child:Container()),
                   ],)
               
