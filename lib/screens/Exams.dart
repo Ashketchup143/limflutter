@@ -100,6 +100,7 @@ class _ExamsState extends State<Exams> {
               Center(
             child: Column(
               children: [
+                Text("Double click exam card to check enrolled students" ,style: TextStyle(fontSize: 30, color: Color.fromARGB(255, 255, 255, 255)),),
                 _exams.length > 0
                 ? Container(
                   height: MediaQuery.of(context).size.height*.8,

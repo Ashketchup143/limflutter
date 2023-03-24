@@ -105,6 +105,7 @@ class _ExamUpdateState extends State<ExamUpdate> {
                               textController1.clear();
                               textController2.clear();
                             });
+                            Navigator.pushReplacementNamed(context, "6");
                             // print(displayText1);
                             //   print(displayText2);
                             //   print(displayText3);

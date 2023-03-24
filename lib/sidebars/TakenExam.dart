@@ -253,6 +253,7 @@ Future<void> loadData() async {
                               displayText1 = textController1.text;
                               textController1.clear();
                             });
+                            Navigator.pushReplacementNamed(context, "5");
                           },
                           child: Text("Student has taken this exam"),
                         ),

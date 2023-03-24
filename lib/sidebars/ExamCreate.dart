@@ -96,6 +96,8 @@ class ExamCreateState extends State<ExamCreate> {
                               textController2.clear();
                               textController3.clear();
                             });
+
+                            Navigator.pushReplacementNamed(context, "6");
                             // print(displayText1);
                             //   print(displayText2);
                             //   print(displayText3);

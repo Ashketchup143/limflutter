@@ -107,6 +107,7 @@ void _setUserId(String id) {
           Center(
             child: Column(
               children: [
+                Text("Double click the card to check taken exams of student:",style: TextStyle(fontSize: 35, color: Colors.white), textAlign: TextAlign.center,),
                 _students.length > 0
                 ? Container(
                   height: MediaQuery.of(context).size.height*.8,

@@ -6,6 +6,9 @@ import 'package:limflutter/models/StudTakenexams.dart';
 import 'package:limflutter/models/StudentsExams.dart';
 import 'package:limflutter/screens/Dashboard.dart';
 import 'package:limflutter/screens/Exams.dart';
+import 'package:limflutter/screens/Login.dart';
+import 'package:limflutter/sidebars/TakenExam.dart';
+import 'package:limflutter/sidebars/UpdateGrade.dart';
 
 class SpecExam extends StatefulWidget {
   const SpecExam({super.key});
@@ -120,13 +123,13 @@ Future<void> loadData() async {
                         for (var takenex in _studentexams)
                           Container(
                             padding: EdgeInsets.all(40),
-                            width: 325,
+                            width: 350,
                             child: Card(
                               elevation: 10,
                               shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12.0)),
                               child: Container(
-                                width: 300.0,
+                                width: 325.0,
                                 height: 150.0,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12.0),
@@ -154,6 +157,7 @@ Future<void> loadData() async {
                 : Center(
                     child: Container(),
                   ),
+                  
                 ]) ,)
               
             ],

@@ -93,7 +93,9 @@ class _leftdrawerState extends State<leftdrawer> {
                   width:175,
                   height: 30,
                   child: ElevatedButton(onPressed: (()async {
+                    print("signout1");
                     await AuthService().signOut();
+                    print("signout2");
                     Navigator.pushReplacementNamed(context, "/");
                     setState(() {
                       userid="";
@@ -108,7 +110,7 @@ class _leftdrawerState extends State<leftdrawer> {
                      
                     )),
                     Container(height: 20,),
-                    userid=="EXibvyI7KEZy6OSJAF3UxwCdGru2"?Text(userid):Container(),
+                    // userid=="EXibvyI7KEZy6OSJAF3UxwCdGru2"?Text(userid):Container(),
 
         // Container(
         //           width:175,

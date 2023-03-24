@@ -113,6 +113,8 @@ class BottomCreateState extends State<BottomCreate> {
                               textController4.clear();
                               textController5.clear();
                             });
+
+                            Navigator.pushReplacementNamed(context, "2");
                             // print(displayText1);
                             //   print(displayText2);
                             //   print(displayText3);

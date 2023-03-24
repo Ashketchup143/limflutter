@@ -102,15 +102,15 @@ class _LoginState extends State<Login> {
                   child: 
                   Row(
                     children: [
-                  //     Container(
-                  //     width: 400,
-                  //     height: 600,
-                  //     decoration: BoxDecoration(
-                  //     borderRadius: BorderRadius.circular(12),
-                  //     color: Colors.grey[200],
-                  //     ),
-                  //     child: Stack(
-                  // children: [
+                      Container(
+                      width: 00,
+                      height: 600,
+                      decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.grey[200],
+                      ),
+                      child: Stack(
+                  children: [
                     // CarouselSlider(
                     //   items: imageList.map((imageUrl) {
                     //     return Container(
@@ -143,10 +143,10 @@ class _LoginState extends State<Login> {
                     //     scrollPhysics: PageScrollPhysics(),
                     //   ),
                     // ),
-                  // ],
-                // ),
+                  ],
+                ),
                       
-                    // ),
+                    ),
                       Expanded(child: Container()),
                         Column(
                         children: [

@@ -108,6 +108,7 @@ class _UpdateGradeState extends State<UpdateGrade> {
                               displayText1 = textController1.text;
                               textController1.clear();
                             });
+                            Navigator.pushReplacementNamed(context, "5");
                             // print(displayText1);
                             //   print(displayText2);
                             //   print(displayText3);
